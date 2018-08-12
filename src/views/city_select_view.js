@@ -9,17 +9,11 @@ const CitySelectView = function (selection) {
 
 
 CitySelectView.prototype.bindEvents = function () {
-
-  PubSub.subscribe('Station:stations', (evt) => {
-    console.log(evt);
-    const allStations = evt.detail;
-    console.log(allStations);
-    this.populateStations();
-  });
-
+  this.populateCities();
   this.selection.addEventListener('change', (evt) => {
     const chosenCity = evt.target.value;
     this.city.getFilteredData(chosenCity);
+      PubSub.publish("Cities:all", this.cities);
   });
 };
 
