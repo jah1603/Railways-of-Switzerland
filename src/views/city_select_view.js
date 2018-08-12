@@ -12,6 +12,11 @@ const CitySelectView = function (selection, stationList) {
 
 CitySelectView.prototype.bindEvents = function () {
   this.populateCities();
+  this.createStationSelector();
+  this.stationList.innerHTML = "";
+};
+
+CitySelectView.prototype.createStationSelector = function(){
   this.selection.addEventListener('change', (evt) => {
     const chosenCity = evt.target.value;
     this.city.getStations(chosenCity);
@@ -24,15 +29,18 @@ CitySelectView.prototype.bindEvents = function () {
     stationSelector.style.color = "crimson";
     stationSelector.style.fontWeight = "bold";
     stationSelector.setAttribute("align", "center");
+    const label = document.createElement('label');
+    label.textContent = "Gare :  ";
+    label.style.color = "crimson";
     const defaultOption = document.createElement('option');
     defaultOption.style.color = "crimson";
     defaultOption.style.backgroundColor = "white";
     defaultOption.textContent = "Veuillez sélectionner une gare";
+    defaultOption.style.textSize = "20";
     stationSelector.appendChild(defaultOption);
-    this.stationList.appendChild(stationSelector);
-  });
-});
-};
+      label.appendChild(stationSelector);
+    this.stationList.appendChild(label);
+})})}
 
 CitySelectView.prototype.populateCities = function(){
   this.cities.forEach((city, index) => {
