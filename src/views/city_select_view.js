@@ -3,7 +3,7 @@ const Cities = require('../models/cities.js');
 
 const CitySelectView = function (selection) {
   this.selection = selection;
-  this.cities = [Basel, Genève, Lausanne, Zürich, Lucerne, Fribourg, Gallen]
+  this.cities = ["Thun", "Sion", "Winterthur", "Bern", "Basel", "Genève", "Lausanne", "Lugano", "Vernier", "Bienne", "Zürich", "Lucerne", "Fribourg", "Gallen", "Neuchâtel", "La Chaux-de-Fonds"];
   this.city = new Cities();
 }
 
@@ -32,3 +32,5 @@ CitySelectView.prototype.populate = function(){
     this.selection.appendChild(option);
   })
 }
+
+module.export = CitySelectView;
