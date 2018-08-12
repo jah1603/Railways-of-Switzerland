@@ -23,30 +23,52 @@ h1{
   font-size: 35;
   font: Garamond;
   color: crimson;
-  background: rgba(240, 230, 255, 0.08);
+  background: white;
   position: relative;
   left: 150px;
-  text-shadow: 2.5px 2.5px DeepSkyBlue;
+  text-shadow: 2px 2px DeepSkyBlue;
   width: 1000px;
   font-weight: bold;
+  box-shadow: 3px 3px 3px rgba(0,150,235,.5);
+  border-radius: 50px;
 }
 
-#city-select{
+div1{
+  align: center;
   padding-left: 20px;
   padding-right: 20px;
   color: crimson;
+  position: relative;
+  left: 400px;
   font-size: 20;
     text-shadow: 0.6px 0.6px white;
-  text-background: rgba(240, 230, 255, 0.45);
+  text-background: white;
   font-weight: bold;
   border: 2px;
   border-color: crimson;
 }
 
-#cities{
+div2{
+  align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: crimson;
+  position: relative;
+  left: -20px;
+  font-size: 20;
+  text-shadow: 0.6px 0.6px white;
+  text-background: rgba(240, 230, 255, 0.45);
+  font-weight: bold;
+  border: 20px;
+  border-color: crimson;
+  radius: 20px;
+}
+
+#cities-selection{
   color:crimson;
   font-size: 14;
   font-weight: bold;
   border: 2px;
   border-color: crimson;
+  border-radius: 20px;
 }
