@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const selection = document.querySelector('select#cities-selection');
   const citySelectView = new CitySelectView(selection);
-  citySelectView.bindEvents();
-
-
+  citySelectView.populateCities();
 
 })
