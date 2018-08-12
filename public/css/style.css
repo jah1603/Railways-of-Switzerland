@@ -86,3 +86,17 @@ option{
   border-radius: 20px;
   background-color: white;
 }
+
+#stations-list{
+  align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: crimson;
+  font-size: 20;
+  text-shadow: 0.6px 0.6px white;
+  text-background: rgba(240, 230, 255, 0.45);
+  font-weight: bold;
+  border: 20px;
+  border-color: crimson;
+  radius: 20px;
+}

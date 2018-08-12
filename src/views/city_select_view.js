@@ -1,10 +1,12 @@
 const PubSub = require('../helpers/pub_sub.js');
 const Cities = require('../models/cities.js');
 
-const CitySelectView = function (selection) {
+const CitySelectView = function (selection, stationList) {
   this.selection = selection;
+  this.stationList = stationList;
   this.cities = ["Thun", "Sion", "Winterthur", "Bern", "Bâle", "Genève", "Lausanne", "Lugano", "Vernier", "Bienne", "Zürich", "Lucerne", "Fribourg", "St Gallen", "Neuchâtel", "La Chaux-de-Fonds"];
   this.city = new Cities();
+  this.stations = null;
 }
 
 
@@ -12,9 +14,24 @@ CitySelectView.prototype.bindEvents = function () {
   this.populateCities();
   this.selection.addEventListener('change', (evt) => {
     const chosenCity = evt.target.value;
-    this.city.getFilteredData(chosenCity);
-      PubSub.publish("Cities:all", this.cities);
+    this.city.getStations(chosenCity);
+    PubSub.subscribe('Station:stations', (evt) => {
+    evt.detail = this.stations;
+    this.stations = this.city.data;
+    const stationSelector = document.createElement('select');
+    stationSelector.value = "Veuillez sélectionner une gare";
+    stationSelector.style.backgroundColor = "white";
+    stationSelector.style.color = "crimson";
+    stationSelector.style.fontWeight = "bold";
+    stationSelector.setAttribute("align", "center");
+    const defaultOption = document.createElement('option');
+    defaultOption.style.color = "crimson";
+    defaultOption.style.backgroundColor = "white";
+    defaultOption.textContent = "Veuillez sélectionner une gare";
+    stationSelector.appendChild(defaultOption);
+    this.stationList.appendChild(stationSelector);
   });
+});
 };
 
 CitySelectView.prototype.populateCities = function(){

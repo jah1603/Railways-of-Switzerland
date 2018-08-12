@@ -5,5 +5,19 @@ const Cities = function () {
   this.data = null;
 }
 
+Cities.prototype.getStations = function (city) {
+  const url = `http://transport.opendata.ch/v1/locations?query=${ city }`;
+  const request = new Request(url);
+  console.log(url);
+  request.getFilteredData()
+    .then((data) => {
+    //  console.log(data);
+      this.data = data;
+      PubSub.publish('Station:stations', this.data);
+  })
+    .catch((err) =>{
+      console.error(err);
+    })}
+
 
 module.exports = Cities;
