@@ -13,7 +13,7 @@ const CitySelectView = function (selection, stationList) {
 CitySelectView.prototype.bindEvents = function () {
   this.populateCities();
   this.createStationSelector();
-  this.stationList.innerHTML = "";
+  this.stationList.style.align ="center";
 };
 
 CitySelectView.prototype.createStationSelector = function(){
@@ -23,15 +23,19 @@ CitySelectView.prototype.createStationSelector = function(){
     PubSub.subscribe('Station:stations', (evt) => {
     evt.detail = this.stations;
     this.stations = this.city.data;
+    console.log(this.stations);
+      this.stationList.innerHTML = "";
     const stationSelector = document.createElement('select');
     stationSelector.value = "Veuillez sélectionner une gare";
     stationSelector.style.backgroundColor = "white";
     stationSelector.style.color = "crimson";
     stationSelector.style.fontWeight = "bold";
     stationSelector.setAttribute("align", "center");
+    stationSelector.style.align = "center";
     const label = document.createElement('label');
     label.textContent = "Gare :  ";
     label.style.color = "crimson";
+    label.style.align = "center";
     const defaultOption = document.createElement('option');
     defaultOption.style.color = "crimson";
     defaultOption.style.backgroundColor = "white";
@@ -44,6 +48,7 @@ CitySelectView.prototype.createStationSelector = function(){
 
 CitySelectView.prototype.populateCities = function(){
   this.cities.forEach((city, index) => {
+    this.stationList.innerHTML = "";
     const option = document.createElement('option');
     option.textContent = city;
     option.value = city;

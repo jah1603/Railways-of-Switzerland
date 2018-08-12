@@ -1,9 +1,12 @@
 const PubSub = require('../helpers/pub_sub.js');
-const Cities = require('../models/cities.js');
+const CitySelectView = require('./city_select_view.js');
 
-const StationSelectView = function (stationArea) {
-  this.stationArea = stationArea;
-    this.city = new Cities();
+const StationSelectView = function (stationList, citySelectView) {
+
+    const selection = document.querySelector('select#cities-selection');
+    const stationArea = document.querySelector('div#stations-list');
+    this.stationList = stationList;
+    this.citySelectView = new CitySelectView(selection, stationArea);
     this.departures = null;
 }
 
@@ -18,7 +21,7 @@ StationSelectView.prototype.bindEvents = function () {
 };
 
 StationSelectView.prototype.populateStations = function(){
-  this.stations.forEach((station, index) => {
+  this.citySelectView.stations.forEach((station, index) => {
     const option = document.createElement('option');
     option.textContent = station;
     option.value = station;
