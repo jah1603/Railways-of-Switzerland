@@ -71,7 +71,7 @@ CitySelectView.prototype.createDepartureBoard = function () {
       depType.textContent = departure.category;
       depDestination.textContent = departure.to;
       depArrivalTime.textContent = departure.stop["platform"];
-      if (depArrivalTime.textContent.length = 0){
+      if (!departure.stop["platform"]){
        depArrivalTime.textContent = "TBC";
     }
 
