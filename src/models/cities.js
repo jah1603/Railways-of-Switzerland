@@ -21,7 +21,7 @@ Cities.prototype.getStations = function (city) {
     })}
 
     Cities.prototype.getDepartures = function (station) {
-      const url = `http://transport.opendata.ch/v1/stationboard?station=${ station }&limit=10`;
+      const url = `http://transport.opendata.ch/v1/stationboard?station=${ station }&limit=15`;
       const request = new Request(url);
       console.log(url);
       request.getFilteredData()

@@ -37,7 +37,7 @@ CitySelectView.prototype.createDepartureBoard = function () {
       departureTimeHeader.textContent = "Departure time";
       departureTypeHeader.textContent = "Type";
       departureDestinationHeader.textContent = "Destination";
-      departureArrivalTimeHeader.textContent = "Arrival time";
+      departureArrivalTimeHeader.textContent = "Platform";
       departureTimeHeader.style.backgroundColor = "white";
       departureTypeHeader.style.backgroundColor = "white";
       departureDestinationHeader.style.backgroundColor = "white";
@@ -70,7 +70,13 @@ CitySelectView.prototype.createDepartureBoard = function () {
       depTime.textContent = departure.stop.departure.substr(((departure.stop.departure.length) - 13), ((departure.stop.departure.length) - 19));
       depType.textContent = departure.category;
       depDestination.textContent = departure.to;
-      depArrivalTime.textContent = "";
+      depArrivalTime.textContent = departure.stop["platform"];
+      if (depArrivalTime.textContent.length = 0){
+       depArrivalTime.textContent = "TBC";
+    }
+
+      console.log(departure.stop);
+      depArrivalTime.setAttribute("align", "center");
       depTime.style.color = "crimson";
       depType.style.color = "crimson";
       depDestination.style.color = "crimson";
