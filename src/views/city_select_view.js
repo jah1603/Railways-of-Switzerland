@@ -27,10 +27,12 @@ CitySelectView.prototype.createDepartureBoard = function () {
     PubSub.subscribe('Station:departures', (evt) => {
       this.departures = evt.detail;
       console.log(this.departures);
+
       const departureTimeHeader = document.querySelector('th#heure-de-départ');
       const departureTypeHeader = document.querySelector('th#type');
       const departureDestinationHeader = document.querySelector('th#destination');
       const departureArrivalTimeHeader = document.querySelector("th#heure-darrivée");
+      this.departureArea.innerHTML = "";
       console.log(departureTimeHeader);
       departureTimeHeader.textContent = "Heure de départ";
       departureTypeHeader.textContent = "Type";
@@ -55,6 +57,7 @@ CitySelectView.prototype.createDepartureBoard = function () {
             departureContent.setAttribute('id', 'dep-row');
       const depTime = document.createElement('td');
       depTime.setAttribute('id', "time");
+        depTime.setAttribute('align', "center");
       const depType = document.createElement('td');
       depType.setAttribute('id', "type");
       const depDestination = document.createElement('td');
@@ -63,7 +66,7 @@ CitySelectView.prototype.createDepartureBoard = function () {
       const depArrivalTime = document.createElement('td');
       depArrivalTime.setAttribute('id', "arrivaltime");
       console.log(departureTimeHeader);
-      depTime.textContent = departure.stop.departure;
+      depTime.textContent = departure.stop.departure.substr(((departure.stop.departure.length) - 13), ((departure.stop.departure.length) - 19));
       depType.textContent = departure.category;
       depDestination.textContent = departure.to;
       depArrivalTime.textContent = "";
