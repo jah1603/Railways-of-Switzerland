@@ -27,9 +27,57 @@ CitySelectView.prototype.createDepartureBoard = function () {
     PubSub.subscribe('Station:departures', (evt) => {
       this.departures = evt.detail;
       console.log(this.departures);
-      const destinationHeader = document.querySelector('th#heure-de-départ');
-      this.departures.forEach((departure, index) => {
-      this.departureArea.innerHTML = "";
+      const departureTimeHeader = document.querySelector('th#heure-de-départ');
+      const departureTypeHeader = document.querySelector('th#type');
+      const departureDestinationHeader = document.querySelector('th#destination');
+      const departureArrivalTimeHeader = document.querySelector("th#heure-darrivée");
+      console.log(departureTimeHeader);
+      departureTimeHeader.textContent = "Heure de départ";
+      departureTypeHeader.textContent = "Type";
+      departureDestinationHeader.textContent = "À destination de";
+      departureArrivalTimeHeader.textContent = "Heure d'arrivée";
+      departureTimeHeader.style.backgroundColor = "white";
+      departureTypeHeader.style.backgroundColor = "white";
+      departureDestinationHeader.style.backgroundColor = "white";
+      departureArrivalTimeHeader.style.backgroundColor = "white";
+      departureTimeHeader.style.color = "crimson";
+      departureTypeHeader.style.color = "crimson";
+      departureDestinationHeader.style.color = "crimson";
+      departureArrivalTimeHeader.style.color = "crimson";
+      this.departureArea.appendChild(departureTimeHeader);
+      this.departureArea.appendChild(departureTypeHeader);
+      this.departureArea.appendChild(departureDestinationHeader);
+      this.departureArea.appendChild(departureArrivalTimeHeader);
+      this.departures.stationboard.forEach((departure, index) => {
+
+      const departureContent = document.createElement('tr');
+        departureContent.style.backgroundColor = "white";
+            departureContent.setAttribute('id', 'dep-row');
+      const depTime = document.createElement('td');
+      depTime.setAttribute('id', "time");
+      const depType = document.createElement('td');
+      depType.setAttribute('id', "type");
+      const depDestination = document.createElement('td');
+      depDestination.setAttribute('id', "destination");
+      depDestination.setAttribute('align', "center");
+      const depArrivalTime = document.createElement('td');
+      depArrivalTime.setAttribute('id', "arrivaltime");
+      console.log(departureTimeHeader);
+      depTime.textContent = departure.stop.departure;
+      depType.textContent = departure.category;
+      depDestination.textContent = departure.to;
+      depArrivalTime.textContent = "";
+      depTime.style.color = "crimson";
+      depType.style.color = "crimson";
+      depDestination.style.color = "crimson";
+      depArrivalTime.style.color = "crimson";
+      console.log(departure.to);
+      departureContent.appendChild(depTime);
+      departureContent.appendChild(depType);
+      departureContent.appendChild(depDestination);
+      departureContent.appendChild(depArrivalTime);
+      this.departureArea.appendChild(departureContent);
+      console.log(this.departureArea);
       })
     })
 })};
