@@ -7,6 +7,7 @@ const CitySelectView = function (selection, stationList) {
   this.cities = ["Thun", "Sion", "Winterthur", "Bern", "Bâle", "Genève", "Lausanne", "Lugano", "Vernier", "Bienne", "Zürich", "Lucerne", "Fribourg", "St Gallen", "Neuchâtel", "La Chaux-de-Fonds"];
   this.city = new Cities();
   this.stations = null;
+  this.stationSelector = null;
 }
 
 
@@ -26,6 +27,8 @@ CitySelectView.prototype.createStationSelector = function(){
     console.log(this.stations);
       this.stationList.innerHTML = "";
     const stationSelector = document.createElement('select');
+    stationSelector.setAttribute("id", "station-list");
+    console.log(stationSelector);
     stationSelector.value = "Veuillez sélectionner une gare";
     stationSelector.style.backgroundColor = "white";
     stationSelector.style.color = "crimson";
@@ -44,7 +47,15 @@ CitySelectView.prototype.createStationSelector = function(){
     stationSelector.appendChild(defaultOption);
       label.appendChild(stationSelector);
     this.stationList.appendChild(label);
-})})}
+    this.stationSelector = stationSelector;
+    console.log(this.stationSelector);
+    for (station of this.stations.stations){
+      const option = document.createElement('option');
+      option.textContent = station.name;
+      option.value = station.name;
+      option.style.backgroundColor = "white";
+      stationSelector.appendChild(option);
+}})})}
 
 CitySelectView.prototype.populateCities = function(){
   this.cities.forEach((city, index) => {

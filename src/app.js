@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const citySelectView = new CitySelectView(selection, stationArea);
   citySelectView.bindEvents();
 
-  const departuresList = document.querySelector('select#departures-list');
-  const stationSelectView = new StationSelectView(departuresList, citySelectView);
-  stationSelectView.bindEvents();
+  // const departuresList = document.querySelector('div#departures-list');
+  // const stationSelectView = new StationSelectView(departuresList, citySelectView);
+  // stationSelectView.bindEvents();
 
 
 })
