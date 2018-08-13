@@ -15,28 +15,17 @@ const StationSelectView = function (departuresList, citySelectView) {
 StationSelectView.prototype.bindEvents = function () {
   PubSub.subscribe('Station:stations', (evt) => {
   this.stations = evt.detail;
-  this.populateStations();
+  console.log(this.stations);
   this.departuresList.addEventListener('change', (evt) => {
     const chosenStation = evt.target.value;
     this.station.getDepartures(chosenStation);
       PubSub.publish("Station:departures", this.stations);
   })})};
 
-StationSelectView.prototype.populateStations = function(){
-  console.log(this.stations);
-  this.citySelectView.createStationSelector();
-  console.log(this.citySelectView.stationSelector);
-  const listToJoin = this.citySelectView.stationSelector;
-  console.log(listToJoin);
-  for (station of this.stations.stations){
-    const option = document.createElement('option');
-    option.textContent = station.name;
-    option.value = station.name;
-    option.style.backgroundColor = "white";
-    listToJoin.appendChild(option);
+StationSelectView.prototype.populateDepartures = function(){
+
 
   }
-}
 
 
 

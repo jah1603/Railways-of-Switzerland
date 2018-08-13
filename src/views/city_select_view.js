@@ -8,14 +8,26 @@ const CitySelectView = function (selection, stationList) {
   this.city = new Cities();
   this.stations = null;
   this.stationSelector = null;
+  this.departures = null;
 }
 
 
 CitySelectView.prototype.bindEvents = function () {
   this.populateCities();
   this.createStationSelector();
+  this.createDepartureBoard();
   this.stationList.style.align ="center";
 };
+
+CitySelectView.prototype.createDepartureBoard = function () {
+  this.stationList.addEventListener('change', (evt) => {
+    const chosenStation = evt.target.value;
+    this.city.getDepartures(chosenStation);
+    PubSub.subscribe('Station:departures', (evt) => {
+      this.departures = evt.detail;
+      console.log(this.departures);
+    })
+})};
 
 CitySelectView.prototype.createStationSelector = function(){
   this.selection.addEventListener('change', (evt) => {
