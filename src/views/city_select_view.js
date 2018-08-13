@@ -1,7 +1,7 @@
 const PubSub = require('../helpers/pub_sub.js');
 const Cities = require('../models/cities.js');
 
-const CitySelectView = function (selection, stationList) {
+const CitySelectView = function (selection, stationList, departureArea) {
   this.selection = selection;
   this.stationList = stationList;
   this.cities = ["Thun", "Sion", "Winterthur", "Bern", "Bâle", "Genève", "Lausanne", "Lugano", "Vernier", "Bienne", "Zürich", "Lucerne", "Fribourg", "St Gallen", "Neuchâtel", "La Chaux-de-Fonds"];
@@ -9,6 +9,7 @@ const CitySelectView = function (selection, stationList) {
   this.stations = null;
   this.stationSelector = null;
   this.departures = null;
+  this.departureArea = departureArea;
 }
 
 
@@ -26,6 +27,10 @@ CitySelectView.prototype.createDepartureBoard = function () {
     PubSub.subscribe('Station:departures', (evt) => {
       this.departures = evt.detail;
       console.log(this.departures);
+      const destinationHeader = document.querySelector('th#heure-de-départ');
+      this.departures.forEach((departure, index) => {
+      this.departureArea.innerHTML = "";
+      })
     })
 })};
 

@@ -5,9 +5,11 @@ const StationSelectView = function (departuresList, citySelectView) {
 
     const selection = document.querySelector('select#cities-selection');
     const stationArea = document.querySelector('div#stations-list');
+    const departureArea = document.querySelector('table#departure-board');
+
     this.departuresList = departuresList;
     this.stations = null;
-    this.citySelectView = new CitySelectView(selection, stationArea);
+    this.citySelectView = new CitySelectView(selection, stationArea, departureArea);
     this.departures = null;
 }
 
